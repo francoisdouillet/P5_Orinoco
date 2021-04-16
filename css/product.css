@@ -1,0 +1,24 @@
+.product {
+  width: 75%;
+  height: 50vh;
+  margin: 0 auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  border: 3px solid black;
+}
+
+.product img {
+  width: 70%;
+}
+
+.color {
+  display: -ms-grid;
+  display: grid;
+}
+
+.color__id {
+  border: 2px solid black;
+  height: 50px;
+}
+/*# sourceMappingURL=product.css.map */

@@ -1,0 +1,18 @@
+.product {
+    width: 75%;
+    height: 50vh;
+    margin: 0 auto;
+    display: flex;
+    border: 3px solid black;
+    & img {
+        width: 70%;
+    }
+}
+
+.color {
+    display: grid;
+    &__id {
+        border: 2px solid black;
+        height: 50px;
+    }
+}

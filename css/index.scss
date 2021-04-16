@@ -1,0 +1,38 @@
+* {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    text-decoration: none;
+  }
+
+  
+.head {
+    height: 100px;
+    background-color: #f3e9f1;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 50px;
+    &__image {
+        width: 30%;
+        margin-left: 20px;
+    }
+    &__basket {
+        margin-right: 25px;
+        font-size: 20px;
+        &:hover {
+            color: red;
+        }
+    }
+}
+
+.main {
+    display: flex;
+    &__template {
+        width: 30%;
+        border: 2px solid black;
+    }
+    &__image {
+        width: 30%;
+    }
+}
