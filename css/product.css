@@ -9,16 +9,13 @@
 }
 
 .product img {
-  width: 70%;
+  width: auto;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 
 .color {
-  display: -ms-grid;
-  display: grid;
-}
-
-.color__id {
-  border: 2px solid black;
-  height: 50px;
+  width: 100%;
 }
 /*# sourceMappingURL=product.css.map */

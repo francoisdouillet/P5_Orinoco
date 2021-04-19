@@ -5,14 +5,12 @@
     display: flex;
     border: 3px solid black;
     & img {
-        width: 70%;
+        width: auto;
+        height: 100%;
+        object-fit: cover;
     }
 }
 
 .color {
-    display: grid;
-    &__id {
-        border: 2px solid black;
-        height: 50px;
-    }
+    width: 100%;
 }
