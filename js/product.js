@@ -44,7 +44,8 @@ function hydratePage(product) {
 
     const found = oldBasket.find(({name}) => name === item.name)
     if (found) {
-      found.quantity++
+      found.quantity++,
+      found.price = item.price * found.quantity
     } else {
       oldBasket.push({
       name: item.name,
