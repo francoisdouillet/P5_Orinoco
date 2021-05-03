@@ -24,7 +24,7 @@ function displayArticle(article) {
   const cloneElt = document.importNode(templateElt.content, true);
 
   cloneElt.getElementById("name").innerHTML = article.name;
-  cloneElt.getElementById("price").innerHTML = article.price;
+  cloneElt.getElementById("price").innerHTML = article.price / 100 + " €";
   cloneElt.getElementById("image").src = article.imageUrl;
   cloneElt.getElementById("description").innerHTML = article.description;
   cloneElt.getElementById(

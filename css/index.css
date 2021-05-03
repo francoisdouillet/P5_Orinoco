@@ -26,6 +26,7 @@
 }
 
 .head__basket {
+  color: black;
   margin-right: 25px;
   font-size: 20px;
 }
@@ -47,5 +48,51 @@
 
 .main__preimage {
   width: 30%;
+}
+
+.basket {
+  width: 80%;
+  padding: 5%;
+  padding-top: 5px;
+  margin: 0 auto;
+  background-color: aqua;
+}
+
+.basket__empty {
+  text-align: center;
+  font-size: 2em;
+  font-weight: bold;
+}
+
+.basket__card {
+  border: 2px solid black;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  padding: 10px;
+  margin-top: 20px;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.basket__card, .basket__card p {
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.basket__card--price {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.basket__card--button {
+  padding: 5px;
+  margin-left: 20px;
 }
 /*# sourceMappingURL=index.css.map */

@@ -18,6 +18,7 @@
         margin-left: 20px;
     }
     &__basket {
+        color: black;
         margin-right: 25px;
         font-size: 20px;
         &:hover {
@@ -34,5 +35,36 @@
     }
     &__preimage {
         width: 30%;
+    }
+}
+
+.basket {
+    width: 80%;
+    padding: 5%;
+    padding-top: 5px;
+    margin: 0 auto;
+    background-color:aqua;
+    &__empty {
+        text-align: center;
+        font-size: 2em;
+        font-weight: bold;
+    }
+    &__card {
+        border: 2px solid black;
+        display: flex;
+        padding: 10px;
+        margin-top: 20px;
+        justify-content: space-between;
+        & ,p {
+            align-items: center;
+        }
+        &--price {
+            display: flex;
+            align-items: center;
+        }
+        &--button {
+            padding: 5px;
+            margin-left: 20px;
+        }
     }
 }

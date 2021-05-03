@@ -17,7 +17,7 @@ function getProductData(productId) {
 function hydratePage(product) {
   document.getElementById("image").src = product.imageUrl;
   document.getElementById("name").innerHTML = product.name;
-  document.getElementById("price").innerHTML = product.price;
+  document.getElementById("price").innerHTML = product.price / 100 + " €";
   document.getElementById("description").innerHTML = product.description;
 
   // Mise en place des couleurs
@@ -41,28 +41,18 @@ function hydratePage(product) {
   const addTobasket = (item) => {
     var oldBasket = JSON.parse(localStorage.getItem("basket")) || [];
     console.log(oldBasket.length);
-    for (var i = 0; i < oldBasket.length; i++) {
-      if (item.name === oldBasket[i].name) {
-        oldBasket[i].quantity++;
-      } else {
-        console.log("else");
-        oldBasket.push({
-          name: item.name,
-           image: item.imageUrl,
-           price: item.price,
-           quantity: 1
-       });
-      }
-    }
-  
-    if (oldBasket.length === 0) {
+
+    const found = oldBasket.find(({name}) => name === item.name)
+    if (found) {
+      found.quantity++
+    } else {
       oldBasket.push({
-         name: item.name,
-          image: item.imageUrl,
-          price: item.price,
-          quantity: 1
-      });
-    }
+      name: item.name,
+       image: item.imageUrl,
+       price: item.price,
+       quantity: 1
+   })
+  }
     console.log(oldBasket);
   
     localStorage.setItem("basket", JSON.stringify(oldBasket));
