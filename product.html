@@ -6,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="./css/index.css">
-    <link rel="stylesheet" href="./css/product.css">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
     <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
@@ -15,7 +14,7 @@
 <body>
     <header class="bg-yellow-300 h-32 flex justify-between items-center">
         <a href="index.html"><img class="w-1/4 ml-5" src="image/logo.png" alt=""></a>
-        <a href="cart.html" class="mr-5 text-xl hover:underline">Panier</a>
+        <a href="cart.html" class="mr-5 text-xl hover:underline flex">Panier <p class="ml-1" id="quantityBasket"></p></a>
       </header>
     <div id="mainArticle" class=" flex items-center p-5 lg:p-10 overflow-hidden relative">
       <div class="w-full max-w-6xl rounded bg-white shadow-xl p-10 lg:p-20 mx-auto text-gray-800 relative md:text-left border-4 border-yellow-300">
@@ -43,6 +42,7 @@
       </div>
   </div>
     <script src="./js/product.js"></script>
+    <script src="./js/utils.js"></script>
 </body>
 </html>
 

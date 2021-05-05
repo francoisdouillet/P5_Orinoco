@@ -2,11 +2,6 @@
 let dataStorage = JSON.parse(localStorage.getItem("basket"));
 console.log(dataStorage);
 
-let quantityTotal = dataStorage.length
-console.log(quantityTotal)
-const totalQuantity = document.getElementById("quantityBasket")
-totalQuantity.textContent = `(${quantityTotal})`
-
 // Fonction pour supprimer un élement du storage
 const removeElementFromBasket = (name) => {
   let basket = JSON.parse(localStorage.getItem("basket"));
@@ -16,7 +11,7 @@ const removeElementFromBasket = (name) => {
   );
 
   localStorage.setItem("basket", JSON.stringify(basketWithoutRemovedElement));
-  window.location.href = "cart.html";
+  document.location.reload()
 };
 // Recuperation ID
 const getBasketId = document.getElementById("basket");
@@ -72,7 +67,7 @@ if (dataStorage == null || dataStorage.length === 0) {
   const reducer = (accumulator, currentValue) => accumulator + currentValue;
   const totalPrice = getPrice.reduce(reducer);
   titlePage.innerHTML = "Votre panier:";
-  // Ajout du prix au HTML
+  // Ajout du prix total
   const displayPrice = document.createElement("p");
   getBasketId.appendChild(displayPrice);
   displayPrice.textContent = `Prix total de la commande: ${totalPrice} €`;
@@ -80,18 +75,54 @@ if (dataStorage == null || dataStorage.length === 0) {
 
   // Formulaire de renseignement
   const form = document.createElement("div");
-  form.innerHTML = `<form class="p-6 m-auto flex flex-col" id="form" name="userInput" onsubmit="submitInfo()" action="order.html">
+  form.innerHTML = `<form class="p-6 m-auto flex flex-col" name="userInput" onsubmit="submitInfo()" action="./confirm.html">
     <label class="mb-2 font-bold" for="prenom">Prénom :</label>
     <input class="mb-2 border-2 border-gray-500" type="text" id="prenom" pattern="[a-zA-Z ]*" placeholder="Prénom" required>
     <label class="mb-2 font-bold" fpr="nom">Nom :</label>
     <input class="mb-2 border-2 border-gray-500" type="text" id="nom" pattern="[a-zA-Z ]*" placeholder="Nom" required>
-    <label class="mb-2 font-bold" for="adress">Adresse :</label>
-    <input class="mb-2 border-2 border-gray-500" type="text" id="adress" pattern="[a-zA-Z ]*" placeholder="Adresse" required>
-    <label class="mb-2 font-bold" for="city">Ville :</label>
-    <input class="mb-2 border-2 border-gray-500" type="text" id="city" pattern="[a-zA-Z ]*" placeholder="Ville" required>
+    <label class="mb-2 font-bold" for="adresse">Adresse :</label>
+    <input class="mb-2 border-2 border-gray-500" type="text" id="adresse" pattern="[a-zA-Z ]*" placeholder="Adresse" required>
+    <label class="mb-2 font-bold" for="codepostal">Code Postal :</label>
+    <input class="mb-2 border-2 border-gray-500" type="number" id="codepostal" pattern="[1-9 ]*" placeholder="Code Postal" required>
+    <label class="mb-2 font-bold" for="ville">Ville :</label>
+    <input class="mb-2 border-2 border-gray-500" type="text" id="ville" pattern="[a-zA-Z ]*" placeholder="Ville" required>
     <label class="mb-2 font-bold" for="email">Email :</label>
     <input class="mb-2 border-2 border-gray-500" type="text" id="email" type="email" name="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" placeholder="exemple@gmail.com" required>
     <button class="bg-yellow-300 opacity-75 hover:opacity-100 text-yellow-900 hover:text-gray-900 rounded-full px-10 py-2 font-semibold m-auto mt-10 w-full md:w-1/2" type="submit" id="submit">Confirmer la commande</button>
 </form>`;
   getBasketId.appendChild(form);
 }
+
+// Récupération des valeurs du formulaire et envoie au local storage
+
+const btnSendForm = document.getElementById('submit')
+
+btnSendForm.addEventListener("click", (e) => {
+  e.preventDefault()
+  // Recuperation données
+  const valueForm = {
+    prenom: document.getElementById("prenom").value,
+    nom: document.getElementById("nom").value,
+    adresse: document.getElementById("adresse").value,
+    ville: document.getElementById("ville").value,
+    codepostal: document.getElementById("codepostal").value,
+    email: document.getElementById("email").value
+  }
+  // Envoie au local storage
+  localStorage.setItem("valueForm", JSON.stringify(valueForm))
+
+  const toSend = {
+    dataStorage,
+    valueForm
+  }
+  // Envoi au serveur
+ const promise = fetch("http://localhost:3000/api/teddies/order", {
+    method: "POST",
+    body: JSON.stringify("toSend"),
+    headers: {
+      "Content-Type" : "aplication/json"
+    }
+  })
+  
+}) 
+

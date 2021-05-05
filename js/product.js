@@ -59,6 +59,7 @@ function hydratePage(product) {
   
     localStorage.setItem("basket", JSON.stringify(oldBasket));
     alert('Votre article a bien était ajouté au panier')
+    document.location.reload()
   };
 }
 console.log(localStorage)
