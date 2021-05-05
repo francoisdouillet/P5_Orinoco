@@ -34,6 +34,7 @@ function hydratePage(product) {
 
   var button = document.createElement("button");
   button.innerHTML = `Ajouter au panier ${product.name}`;
+  button.className = "bg-yellow-300 opacity-75 hover:opacity-100 text-yellow-900 hover:text-gray-900 rounded-full px-10 py-2 font-semibold"
   button.onclick = () => addTobasket(product);
 
   divApp.appendChild(button);
