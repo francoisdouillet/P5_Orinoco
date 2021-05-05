@@ -7,25 +7,42 @@
     <title>Document</title>
     <link rel="stylesheet" href="./css/index.css">
     <link rel="stylesheet" href="./css/product.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
     <script src="https://kit.fontawesome.com/e1e907064b.js" crossorigin="anonymous"></script>
 </head>
 <body>
-    <header class="head">
-        <a href="index.html"><img class="head__image" src="image/logo.png" alt=""></a>
-        <a href="cart.html" class="head__basket">Panier</a>
+    <header class="bg-yellow-300 h-32 flex justify-between items-center">
+        <a href="index.html"><img class="w-1/4 ml-5" src="image/logo.png" alt=""></a>
+        <a href="cart.html" class="mr-5 text-xl hover:underline">Panier</a>
       </header>
-    <div class="product" id="mainArticle" href="">
-        <img id="image">
-        <div>
-          <div id="name"></div>
-          <div id="price"></div>
-          <div id="description"></div>
-          <select id="color" class="color .section__choice">
-              
-          </select>
-          <div id="button"></div>
-        </div>
-    </div>
+    <div id="mainArticle" class=" flex items-center p-5 lg:p-10 overflow-hidden relative">
+      <div class="w-full max-w-6xl rounded bg-white shadow-xl p-10 lg:p-20 mx-auto text-gray-800 relative md:text-left border-4 border-yellow-300">
+          <div class="md:flex items-center -mx-10">
+              <div class="w-full md:w-1/2 px-10 mb-10 md:mb-0">
+                  <div class="relative">
+                      <img  id="image" class="w-full relative z-10" alt="">
+                  </div>
+              </div>
+              <div class="w-full md:w-1/2 px-10">
+                  <div class="mb-6">
+                      <h1 class="font-bold uppercase text-2xl mb-5" id="name"></h1>
+                      <p class="text-sm" id="description"></p>
+                  </div>
+                  <select id="color" class="color mb-6 border-4 border-yellow-300"></select>
+                  <div>
+                      <div class="inline-block align-bottom mr-5">
+                          <span class="font-bold text-5xl leading-none align-baseline" id="price"></span>
+                      </div>
+                      <div class="inline-block align-bottom">
+                          <button id="button" class="bg-yellow-300 opacity-75 hover:opacity-100 text-yellow-900 hover:text-gray-900 rounded-full px-10 py-2 font-semibold"></button>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
     <script src="./js/product.js"></script>
 </body>
 </html>

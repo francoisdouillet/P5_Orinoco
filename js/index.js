@@ -26,7 +26,6 @@ function displayArticle(article) {
   cloneElt.getElementById("name").innerHTML = article.name;
   cloneElt.getElementById("price").innerHTML = article.price / 100 + " €";
   cloneElt.getElementById("image").src = article.imageUrl;
-  cloneElt.getElementById("description").innerHTML = article.description;
   cloneElt.getElementById(
     "mainArticle"
   ).href = `product.html?id=${article._id}`;

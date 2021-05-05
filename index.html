@@ -3,25 +3,28 @@
 <head>
   <meta charset="UTF-8">
   <link rel="stylesheet" href="./css/index.css">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+  <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
   <script src="https://kit.fontawesome.com/e1e907064b.js" crossorigin="anonymous"></script>
 </head>
 <body>
-  <header class="head">
-    <a href="index.html"><img class="head__image" src="image/logo.png" alt=""></a>
-    <a href="cart.html" class="head__basket">Panier</a>
+  <header class="bg-yellow-300 h-32 flex justify-between items-center">
+    <a href="index.html"><img class="w-1/4 ml-5" src="image/logo.png" alt=""></a>
+    <a href="cart.html" class="mr-5 text-xl hover:underline">Panier</a>
   </header>
-  <main class="main" id="main">
+  <main class="grid xl:grid-cols-3 sm:grid-cols-1 gap-4 mt-4 p-6" id="main">
     <template id="templateArticle">
-      <a class="main__template" id="mainArticle" href="">
-          <img id="image" class="main__preimage">
-          <div>
-            <div id="name"></div>
-            <div id="price"></div>
-            <div id="description"></div>
+      <a class="list-none bg-yellow-100 rounded-md p-4 border-4 border-yellow-300 overflow-hidden" id="mainArticle" href="">
+          <img id="image" class="rounded h-72 w-full object-cover transition duration-500 transform hover:scale-110">
+          <div class="pt-4 flex items-center justify-between">
+            <div id="name" class="font-bold text-xl"></div>
+            <div id="price" class="font-bold text-xl"></div>
           </div>
       </a>
     </template>
   </main>
+
   <script src="./js/index.js"></script>
 </body>
 </html>
