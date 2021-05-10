@@ -52,7 +52,8 @@ function hydratePage(product) {
       name: item.name,
        image: item.imageUrl,
        price: item.price,
-       quantity: 1
+       quantity: 1,
+       _id: item._id
    })
   }
     console.log(oldBasket);

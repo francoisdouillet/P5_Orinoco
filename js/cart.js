@@ -11,15 +11,18 @@ const removeElementFromBasket = (name) => {
   );
 
   localStorage.setItem("basket", JSON.stringify(basketWithoutRemovedElement));
-  document.location.reload()
+  document.location.reload();
 };
 // Recuperation ID
 const getBasketId = document.getElementById("basket");
 const titlePage = document.getElementById("title");
 
+let totalPrice = 0;
+
 //Affichage des élements du local storage
 if (dataStorage == null || dataStorage.length === 0) {
   titlePage.innerHTML = "Votre panier est vide !";
+  totalPrice = 0;
 } else {
   titlePage.innerHTML = "Votre panier:";
   let i = 0;
@@ -65,7 +68,7 @@ if (dataStorage == null || dataStorage.length === 0) {
   }
   //Calcul prix total
   const reducer = (accumulator, currentValue) => accumulator + currentValue;
-  const totalPrice = getPrice.reduce(reducer);
+  totalPrice = getPrice.reduce(reducer);
   titlePage.innerHTML = "Votre panier:";
   // Ajout du prix total
   const displayPrice = document.createElement("p");
@@ -75,19 +78,17 @@ if (dataStorage == null || dataStorage.length === 0) {
 
   // Formulaire de renseignement
   const form = document.createElement("div");
-  form.innerHTML = `<form class="p-6 m-auto flex flex-col" name="userInput" onsubmit="submitInfo()" action="./confirm.html">
+  form.innerHTML = `<form class="p-6 m-auto flex flex-col" name="userInput" onsubmit="submitInfo()">
     <label class="mb-2 font-bold" for="prenom">Prénom :</label>
     <input class="mb-2 border-2 border-gray-500" type="text" id="prenom" pattern="[a-zA-Z ]*" placeholder="Prénom" required>
     <label class="mb-2 font-bold" fpr="nom">Nom :</label>
     <input class="mb-2 border-2 border-gray-500" type="text" id="nom" pattern="[a-zA-Z ]*" placeholder="Nom" required>
     <label class="mb-2 font-bold" for="adresse">Adresse :</label>
     <input class="mb-2 border-2 border-gray-500" type="text" id="adresse" pattern="[a-zA-Z ]*" placeholder="Adresse" required>
-    <label class="mb-2 font-bold" for="codepostal">Code Postal :</label>
-    <input class="mb-2 border-2 border-gray-500" type="number" id="codepostal" pattern="[1-9 ]*" placeholder="Code Postal" required>
     <label class="mb-2 font-bold" for="ville">Ville :</label>
     <input class="mb-2 border-2 border-gray-500" type="text" id="ville" pattern="[a-zA-Z ]*" placeholder="Ville" required>
     <label class="mb-2 font-bold" for="email">Email :</label>
-    <input class="mb-2 border-2 border-gray-500" type="text" id="email" type="email" name="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" placeholder="exemple@gmail.com" required>
+    <input class="mb-2 border-2 border-gray-500" type="email" id="email" name="email" placeholder="exemple@gmail.com" required>
     <button class="bg-yellow-300 opacity-75 hover:opacity-100 text-yellow-900 hover:text-gray-900 rounded-full px-10 py-2 font-semibold m-auto mt-10 w-full md:w-1/2" type="submit" id="submit">Confirmer la commande</button>
 </form>`;
   getBasketId.appendChild(form);
@@ -95,34 +96,55 @@ if (dataStorage == null || dataStorage.length === 0) {
 
 // Récupération des valeurs du formulaire et envoie au local storage
 
-const btnSendForm = document.getElementById('submit')
+const btnSendForm = document.getElementById("submit");
+// Boucle pour récupérer chaque ID du panier
+let products = [];
+for (let i = 0; i < dataStorage.length; i++) {
+  let idInBasket = dataStorage[i]._id;
+  products.push(idInBasket);
+}
+console.log("idproduct===");
+console.log(products);
 
+// Quand l'utilisateur valide la commande
 btnSendForm.addEventListener("click", (e) => {
-  e.preventDefault()
-  // Recuperation données
-  const valueForm = {
-    prenom: document.getElementById("prenom").value,
-    nom: document.getElementById("nom").value,
-    adresse: document.getElementById("adresse").value,
-    ville: document.getElementById("ville").value,
-    codepostal: document.getElementById("codepostal").value,
-    email: document.getElementById("email").value
-  }
-  // Envoie au local storage
-  localStorage.setItem("valueForm", JSON.stringify(valueForm))
+  e.preventDefault();
+  let contact = {
+    firstName: document.getElementById("prenom").value,
+    lastName: document.getElementById("nom").value,
+    address: document.getElementById("adresse").value,
+    city: document.getElementById("ville").value,
+    email: document.getElementById("email").value,
+  };
+  let body = { contact, products };
+  console.log("body===")
+  console.log(body);
 
-  const toSend = {
-    dataStorage,
-    valueForm
-  }
-  // Envoi au serveur
- const promise = fetch("http://localhost:3000/api/teddies/order", {
-    method: "POST",
-    body: JSON.stringify("toSend"),
+
+  const promise = fetch("http://localhost:3000/api/teddies/order", {
     headers: {
-      "Content-Type" : "aplication/json"
+      Accept: "application/json",
+      "Content-Type": "application/json",
+    },
+    method: "POST",
+    body: JSON.stringify(body),
+  })
+
+  promise.then(async(response)=>{
+    try{
+      const idContent = await response.json()
+      console.log("contenu de response")
+      console.log(idContent)
+      if(response.ok){
+        localStorage.setItem("orderId", idContent.orderId)
+        localStorage.setItem("totalPrice", totalPrice);
+        window.location.href = "./confirm.html";
+      } else {
+        alert(`Problème avec le serveur : erreur ${response.status}`)
+      }
+    }catch(e){
+      console.log(e)
     }
   })
-  
-}) 
-
+});
+     
