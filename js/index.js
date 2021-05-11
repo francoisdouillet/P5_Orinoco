@@ -1,3 +1,4 @@
+// Boucle pour que les articles s'affiche
 (async function () {
   const articles = await getArticles();
 
@@ -6,6 +7,7 @@
   }
 })();
 
+// Appel de l'API (donnés)
 function getArticles() {
   return fetch("http://localhost:3000/api/teddies")
     .then(function (httpBodyResponse) {
@@ -19,6 +21,7 @@ function getArticles() {
     });
 }
 
+// Fonction qui permet de creer chaque article
 function displayArticle(article) {
   const templateElt = document.getElementById("templateArticle");
   const cloneElt = document.importNode(templateElt.content, true);
