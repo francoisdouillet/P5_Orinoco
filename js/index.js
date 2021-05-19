@@ -21,6 +21,7 @@ function getArticles() {
     });
 }
 
+
 // Fonction qui permet de creer chaque article
 function displayArticle(article) {
   const templateElt = document.getElementById("templateArticle");

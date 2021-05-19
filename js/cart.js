@@ -69,7 +69,7 @@ if (basket == null || basket.length === 0) {
 
   // Formulaire de renseignement
   const form = document.createElement("div");
-  form.innerHTML = `<form class="p-6 m-auto flex flex-col" name="userInput">
+  form.innerHTML = `<form class="p-6 m-auto flex flex-col" name="userInput" id="myForm">
     <label class="mb-2 font-bold" for="prenom">Prénom :</label>
     <input class="input mb-2 border-2 border-gray-500" type="text" id="prenom" pattern="[a-zA-Z ]*" placeholder="Prénom" required>
     <label class="mb-2 font-bold" fpr="nom">Nom :</label>
@@ -78,15 +78,12 @@ if (basket == null || basket.length === 0) {
     <input class="input mb-2 border-2 border-gray-500" type="text" id="adresse" pattern="[a-zA-Z ]*" placeholder="Adresse" required>
     <label class="mb-2 font-bold" for="ville">Ville :</label>
     <input class="input mb-2 border-2 border-gray-500" type="text" id="ville" pattern="[a-zA-Z ]*" placeholder="Ville" required>
-    <label class="mb-2 font-bold" for="email">Email :</label>
+    <label class="mb-2 font-bold" for="email">Email :</label>  
     <input class="input mb-2 border-2 border-gray-500" type="email" id="email" name="email"  placeholder="exemple@gmail.com" required>
     <button class="bg-yellow-300 opacity-75 hover:opacity-100 text-yellow-900 hover:text-gray-900 rounded-full px-10 py-2 font-semibold m-auto mt-10 w-full md:w-1/2" type="submit" id="submit">Confirmer la commande</button>
 </form>`;
   getBasketId.appendChild(form);
 }
-
-// Récupération ID du formulaire 
-const btnSendForm = document.getElementById("submit");
 
 // Boucle pour récupérer les ID de chaque produits
 const getProductId = () => {
@@ -97,7 +94,6 @@ const getProductId = () => {
   }
   return products
 };
-
 // Fonction pour récupérer les valeurs du formulaire
 const getFormData = () => {
   return {
@@ -141,6 +137,4 @@ const postOrder = (e) => {
 };
 
 // La fonction postOrder s'execute quand on clique sur "Confirmer la commande"
-btnSendForm.addEventListener("click", function (e) {
-  postOrder(e);
-});
+document.getElementById("myForm").addEventListener("submit", postOrder);

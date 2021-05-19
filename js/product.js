@@ -1,13 +1,14 @@
 (async () => {
   const productId = getProductId();
   const productData = await getProductData(productId);
-  hydratePage(productData);
+  hydratePage(productData)
 })();
 
 // Recupération de l'ID du produit sur laquel on a cliqué
 function getProductId() {
   return new URL(window.location.href).searchParams.get("id");
 }
+
 
 //Appel de l'api avec l'ID
 function getProductData(productId) {
