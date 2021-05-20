@@ -19,7 +19,7 @@ const postOrder = (e) => {
   e.preventDefault();
   // Initialisation de ce qu'on va envoyer dans le POST
   let contact = getFormData();
-  let products = getProductId()
+  let products = getProductId();
   let body = { contact, products };
   fetch("http://localhost:3000/api/teddies/order", {
     headers: {
@@ -37,7 +37,7 @@ const postOrder = (e) => {
       // Ajout de l'orderId et du prix total dans le localstorage
       localStorage.setItem("orderId", responseData.orderId);
       localStorage.setItem("totalPrice", totalPrice);
-      window.location.href = "./confirm.html";
+      window.location.href = "confirm.html";
     })
     .catch((error) => {
       alert("Veuillez remplir tous les champs");
@@ -82,12 +82,10 @@ if (baskets == null || baskets.length === 0) {
     priceCard.appendChild(deleteButton);
     deleteButton.className = "basketbutton p-2 ml-2";
     // Supression de l'article du local storage
-    
-    let name = basket.name
 
-    deleteButton.addEventListener("click", () =>
-      removeElementFromBasket(name)
-    );
+    let name = basket.name;
+
+    deleteButton.addEventListener("click", () => removeElementFromBasket(name));
     // Icone de supression
     const iconButton = document.createElement("i");
     deleteButton.appendChild(iconButton);
@@ -108,7 +106,7 @@ if (baskets == null || baskets.length === 0) {
     <label class="mb-2 font-bold" fpr="nom">Nom :</label>
     <input class="input mb-2 border-2 border-gray-500" type="text" id="nom" pattern="[a-zA-Z ]*" placeholder="Nom" required>
     <label class="mb-2 font-bold" for="adresse">Adresse :</label>
-    <input class="input mb-2 border-2 border-gray-500" type="text" id="adresse" pattern="[a-zA-Z ]*" placeholder="Adresse" required>
+    <input class="input mb-2 border-2 border-gray-500" type="text" id="adresse" pattern="[a-zA-Z 0-9 ]*" placeholder="Adresse" required>
     <label class="mb-2 font-bold" for="ville">Ville :</label>
     <input class="input mb-2 border-2 border-gray-500" type="text" id="ville" pattern="[a-zA-Z ]*" placeholder="Ville" required>
     <label class="mb-2 font-bold" for="email">Email :</label>  
@@ -119,7 +117,7 @@ if (baskets == null || baskets.length === 0) {
 
   // La fonction postOrder s'execute quand on clique sur "Confirmer la commande"
 
-document.getElementById("myForm").addEventListener("submit", postOrder);
+  document.getElementById("myForm").addEventListener("submit", postOrder);
 }
 
 // Boucle pour récupérer les ID de chaque produits
@@ -129,7 +127,7 @@ const getProductId = () => {
     let idInBasket = basket[i]._id;
     products.push(idInBasket);
   }
-  return products
+  return products;
 };
 // Fonction pour récupérer les valeurs du formulaire
 const getFormData = () => {
@@ -141,5 +139,3 @@ const getFormData = () => {
     email: document.getElementById("email").value,
   };
 };
-
-

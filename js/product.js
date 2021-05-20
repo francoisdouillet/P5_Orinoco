@@ -35,7 +35,7 @@ function hydratePage(product) {
   // Ajout button panier
   const divApp = document.getElementById("button");
 
-  var button = document.createElement("button");
+  let button = document.createElement("button");
   button.innerHTML = `Ajouter au panier ${product.name}`;
   button.className =
     "bg-yellow-300 opacity-75 hover:opacity-100 text-yellow-900 hover:text-gray-900 rounded-full px-10 py-2 font-semibold";
@@ -45,9 +45,7 @@ function hydratePage(product) {
 
   // Creation d'un tableau si il n'y a pas d'élement dans le localstorage, sinon rajoute la quantité et le prix dans le local storage
   const addTobasket = (item) => {
-    var oldBasket = JSON.parse(localStorage.getItem("basket")) || [];
-    console.log(oldBasket.length);
-
+    let oldBasket = JSON.parse(localStorage.getItem("basket")) || [];
     const found = oldBasket.find(({ name }) => name === item.name);
     if (found) {
       found.quantity++, (found.price = item.price * found.quantity);

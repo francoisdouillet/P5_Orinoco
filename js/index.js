@@ -32,7 +32,7 @@ function displayArticle(article) {
   cloneElt.getElementById("image").src = article.imageUrl;
   cloneElt.getElementById(
     "mainArticle"
-  ).href = `product.html?id=${article._id}`;
+  ).href = `./product.html?id=${article._id}`;
 
   document.getElementById("main").appendChild(cloneElt);
 }
